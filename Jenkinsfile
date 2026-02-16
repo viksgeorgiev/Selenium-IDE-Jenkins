@@ -10,18 +10,11 @@ pipeline{
             steps{
                 bat '''
                 echo Installing .NET SDK 6.0
-                choco install dontet-sdk -y --version=6.0.100
+                choco install dotnet-sdk --version=6.0.100 -y
                 '''
             }
         }
-        stage("Uninstall current chrome"){
-            steps{
-                bat '''
-                echo Uninstalling current Google Chrome
-                choco install googlechrome -y
-                '''
-            }
-        }
+       
        stage("Build"){
             steps{
                 bat 'dotnet build SeleniumIde.sln --configuration Release'
@@ -31,17 +24,6 @@ pipeline{
             steps{
                 bat 'dotnet test SeleniumIde.sln --logger "trx;LogFileName=TestResults.trx"'
             }
-        }
-    }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
         }
     }
 }
