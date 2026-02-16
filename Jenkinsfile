@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Checkout code"){
             steps{
-                git branch 'main', url: 'https://github.com/viksgeorgiev/Selenium-IDE-Jenkins.git'
+                git branch: 'main', url: 'https://github.com/viksgeorgiev/Selenium-IDE-Jenkins.git'
             }
         }
           stage("Set up .NET Core"){
